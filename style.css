@@ -78,7 +78,7 @@ label {
   border-radius: 3px;
 }
 
-input {
+input, select {
   background: #444;
   color: #fff;
   border: 1px solid #555;

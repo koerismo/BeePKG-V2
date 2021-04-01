@@ -91,7 +91,6 @@ const info_item_template = `
 `
 
 const item_template = `
-`
   <header onclick="collapse(this)">Toggle Collapse</header>
   <hr>
   <input class="pkg-input item-name" placeholder="Item Name"><br>

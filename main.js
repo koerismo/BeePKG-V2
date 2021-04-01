@@ -117,6 +117,7 @@ async function generate() {
       'name': q('.item-name',x).value,
       'desc': q('.item-desc',x).value,
       'id': nameToId(q('.item-name',x).value),
+      'handle': q('.item-handle',x).value,
       'inst': q('.item-inst',x),
       'icon_png': q('.item-icon-png',x),
       'icon_vtf': q('.item-icon-vtf',x)
@@ -135,6 +136,7 @@ async function generate() {
       .replaceAll('{ITEM_DESC}',itemprops.desc)
       .replace('{ITEM_INPUTS}',doInputs(x))
       .replace('{ITEM_OUTPUTS}',doOutputs(x))
+      .replace('{ITEM_HANDLE}',itemprops.handle)
     await zip.file(`items/${itemprops.id}/properties.txt`,propsfile)
     await zip.file(`items/${itemprops.id}/editoritems.txt`,editoritems)
     

@@ -7,6 +7,12 @@
   height: 100vh;
   display: flex;
   background: #fff2;
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+
+#overlay.overlay-active {
+  opacity: 1;
 }
 
 #overlay div h4 {
@@ -27,6 +33,12 @@
   border-radius: 10px;
   box-shadow: 2px 5px 10px 0 #0005;
   text-align: center;
+  scale: 0.1;
+  transition: 0.1s ease-out;
+}
+
+#overlay.overlay-active div {
+  scale: 1;
 }
 
 #overlay div button {

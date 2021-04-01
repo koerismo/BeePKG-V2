@@ -102,6 +102,14 @@ const item_template = `
   <input class="pkg-input item-icon-png" type="file"><br>
   <label>Item Instance</label>
   <input class="pkg-input item-inst" type="file"><br>
+  <label>Item Handle</label>
+  <select class="pkg-input item-handle">
+    <option value="HANDLE_NONE">No Handle</option>
+    <option value="HANDLE_4_DIRECTIONS">4 Directions</option>
+    <option value="HANDLE_36_DIRECTIONS">36 Directions</option>
+    <option value="HANDLE_6_POSITIONS">6 Positions</option>
+    <option value="HANDLE_8_POSITIONS">8 Positions</option>
+  </select>
   <hr>
   <button onclick="addInput(this)">Add Input</button>
   <section class="item-inputs"></section>

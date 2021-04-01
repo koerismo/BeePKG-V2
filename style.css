@@ -1,0 +1,105 @@
+html, body {
+  background: #222;
+  font-family: sans-serif;
+}
+
+h3 {
+  margin: 10px auto;
+  color: #444;
+  font-size: 30px;
+  font-weight: 100;
+}
+  
+section {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #555;
+  background: #333;
+  border-radius: 10px;
+}
+
+hr {
+  color: #444;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: min(500px, 100vw);
+  margin: 0 auto;
+}
+
+#section-items > section {
+  background: #222;
+  height: 5px;
+  overflow: hidden;
+  transition: 0.2s ease-out;
+}
+
+label {
+  margin: 5px;
+  color: #999;
+  font-size: 13px;
+}
+
+#section-items > section.active {
+  background: #222;
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow: hidden;
+}
+
+#section-items > section > header {
+	height: 10px;
+	padding: 0;
+	margin: -2px 2px 5px 2px;
+  color: #888;
+  font-size: 12px;
+}
+
+.item-inputs, .item-outputs {
+  border-radius: 3px;
+  margin: 2px 2px 20px 2px;
+  background: #2a2a2a;
+  border-color: #444;
+  padding: 0;
+}
+
+.item-inputs section, .item-outputs section {
+  margin: 5px;
+  border-radius: 3px;
+}
+
+input {
+  background: #444;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 3px;
+  margin: 2px;
+  padding: 5px;
+}
+
+input:focus {
+  outline: none;
+  background: #555;
+  border: 1px solid #666;
+}
+
+button {
+  background: #555;
+  color: #fff;
+  border: 1px solid #777;
+  border-radius: 3px;
+  margin: 2px;
+  padding: 2px 5px;
+}
+
+button:hover {
+  background: #47f;
+  color: #fff;
+  border: 1px solid #59f;
+  border-radius: 3px;
+  margin: 2px;
+  padding: 2px 5px;
+}
+

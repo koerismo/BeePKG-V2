@@ -38,6 +38,11 @@ function addItem() {
   items.appendChild(tmp)
 }
 
+const placeholders = {
+	'io-input': '',
+	'io-output': ''
+}
+
 function addInput(x) {
   let tmp = document.createElement('SECTION')
   tmp.innerHTML = `
@@ -46,8 +51,8 @@ function addInput(x) {
   <option value="AND">And</option>
   <option value="OR">Or</option>
 </select><br>
-<label>Enable Command</label><input class="input-enable"><br>
-<label>Disable Command</label><input class="input-disable">
+<label>Enable Command</label> <input class="input-enable"  placeholder="mylight,TurnOn,,0,-1"><br>
+<label>Disable Command</label><input class="input-disable" placeholder="mylight,TurnOff,,0,-1">
 <hr>
 <button onclick="this.parentElement.parentElement.removeChild(this.parentElement)">Delete Input</button>`
   q('.item-inputs',x.parentElement).appendChild(tmp)
@@ -56,8 +61,8 @@ function addInput(x) {
 function addOutput(x) {
   let tmp = document.createElement('SECTION')
   tmp.innerHTML = `
-<label>Enable Command</label><input class="output-enable"><br>
-<label>Disable Command</label><input class="output-disable">
+<label>Enable Command</label> <input class="output-enable"  placeholder="instance:relay_enable;onTrigger"><br>
+<label>Disable Command</label><input class="output-disable" placeholder="instance:relay_disable;onTrigger">
 <hr>
 <button onclick="this.parentElement.parentElement.removeChild(this.parentElement)">Delete Output</button>`
   q('.item-outputs',x.parentElement).appendChild(tmp)

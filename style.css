@@ -83,6 +83,11 @@ label {
   border-radius: 3px;
 }
 
+.input-enable, .input-disable, .output-enable, .output-disable {
+	font-size: 11px;
+	width: 200px;
+}
+
 input, select {
   background: #444;
   color: #fff;

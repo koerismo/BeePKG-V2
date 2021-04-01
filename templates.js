@@ -31,7 +31,7 @@ const editoritems_template = `
 				}
 			}
 		}
-		"MovementHandle"	"HANDLE_4_DIRECTIONS"
+		"MovementHandle"	"{ITEM_HANDLE}"
 		"InvalidSurface" 	"WALL FLOOR CEILING"
 		"DesiredFacing"		"DESIRES_ANYTHING"
 		"CanAnchorOnGoo"	"0"

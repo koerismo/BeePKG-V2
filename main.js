@@ -74,12 +74,12 @@ function doInputs(x) {
   let out = ''
   for (let y = 0; y < inputs.length; y++) {
     out += `
-		"BEE2"
-		{
-			"Type"  "${q('.input-type',x).value}"
-			"Enable_cmd"  "${q('.input-enable',inputs[y]).value}"
-			"Disable_cmd"  "${q('.input-disable',inputs[y]).value}"
-		}`
+			"BEE2"
+			{
+				"Type"  "${q('.input-type',x).value}"
+				"Enable_cmd"  "${q('.input-enable',inputs[y]).value}"
+				"Disable_cmd"  "${q('.input-disable',inputs[y]).value}"
+			}`
   }
   return out
 }
@@ -89,11 +89,11 @@ function doOutputs(x) {
   let out = ''
   for (let y = 0; y < outputs.length; y++) {
     out += `
-		"BEE2"
-		{
-			"out_activate"  "${q('.output-enable',outputs[y]).value}"
-			"out_deactivate"  "${q('.output-disable',outputs[y]).value}"
-		}`
+			"BEE2"
+			{
+				"out_activate"  "${q('.output-enable',outputs[y]).value}"
+				"out_deactivate"  "${q('.output-disable',outputs[y]).value}"
+			}`
   }
   return out
 }

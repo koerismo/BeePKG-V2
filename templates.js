@@ -37,7 +37,14 @@ const editoritems_template = `
 		"CanAnchorOnGoo"	"0"
 		"CanAnchorOnBarriers"	"0"
 	}
-	"Properties"{}
+	"Properties"
+	{
+		"ConnectionCount"
+		{
+		"DefaultValue"	"0"
+		"Index"	"1"
+		}
+	}
 	"Inputs"
 	{
 {ITEM_INPUTS}

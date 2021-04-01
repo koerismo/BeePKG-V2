@@ -146,7 +146,7 @@ async function generate() {
     
     // PNG
     let png_read = await readImage(itemprops.icon_png.files[0])
-    await zip.file(`resources/BEE2/beepkg/${itemprops.id}.png`,png_read)
+    await zip.file(`resources/BEE2/beepkg/${itemprops.id.toLowerCase()}.png`,png_read)
     
     // VMF
     let inst_read = await readText(itemprops.inst.files[0])

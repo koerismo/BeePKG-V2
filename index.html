@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>BEEPKG-V2</title>
+	</head>
+	<body>
+		<div id="container">
+			<h3>BeePKG</h3>
+			<section>
+				<input class="pkg-input" id="pkg-name" placeholder="Package Name"><br>
+				<input class="pkg-desc" id="pkg-desc" placeholder="Package Description">
+			</section>
+			<section>
+				<button onclick="addItem()">Add Item</button>
+				<section id="section-items">
+
+				</section>
+			</section>
+			<section>
+				<button onclick="generate()">Download</button>
+			</section>
+		</div>
+		<script src="templates.js"></script>
+		<script src="jszip/FileSaver.js"></script>
+		<script src="jszip/jszip.min.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>

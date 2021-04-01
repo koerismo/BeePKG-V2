@@ -1,0 +1,41 @@
+
+#overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: #fff2;
+}
+
+#overlay div h4 {
+  color: #fff;
+  font-size: 20px;
+  margin: 10px auto;
+}
+
+#overlay div {
+  width: 350px;
+  background: #333;
+  color: #ddd;
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #777;
+  border-radius: 10px;
+  box-shadow: 2px 5px 10px 0 #0005;
+  text-align: center;
+}
+
+#overlay div button {
+  margin: 10px auto;
+  padding: 5px 8px;
+  font-size: 15px;
+}
+
+#overlay div a {
+  padding: 0;
+  margin: 10px auto;
+}

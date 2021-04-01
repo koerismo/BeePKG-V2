@@ -95,13 +95,6 @@ const item_template = `
   <hr>
   <input class="pkg-input item-name" placeholder="Item Name"><br>
   <input class="pkg-input item-desc" placeholder="Item Description"><br>
-  <hr>
-  <label>Item Icon VTF</label>
-  <input class="pkg-input item-icon-vtf" type="file"><br>
-  <label>Item Icon PNG</label>
-  <input class="pkg-input item-icon-png" type="file"><br>
-  <label>Item Instance</label>
-  <input class="pkg-input item-inst" type="file"><br>
   <label>Item Handle</label>
   <select class="pkg-input item-handle">
     <option value="HANDLE_NONE">No Handle</option>
@@ -110,6 +103,13 @@ const item_template = `
     <option value="HANDLE_6_POSITIONS">6 Positions</option>
     <option value="HANDLE_8_POSITIONS">8 Positions</option>
   </select>
+  <hr>
+  <label>Item Icon VTF</label>
+  <input class="pkg-input item-icon-vtf" type="file"><br>
+  <label>Item Icon PNG</label>
+  <input class="pkg-input item-icon-png" type="file"><br>
+  <label>Item Instance</label>
+  <input class="pkg-input item-inst" type="file">
   <hr>
   <button onclick="addInput(this)">Add Input</button>
   <section class="item-inputs"></section>

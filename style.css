@@ -9,6 +9,14 @@ h3 {
   font-size: 30px;
   font-weight: 100;
 }
+
+h3::after {
+	content: 'Beta';
+	margin: 5px;
+	background: #4565c6;
+	padding: 6px 8px 2px 8px;
+	border-radius: 3px;
+}
   
 section {
   padding: 10px;

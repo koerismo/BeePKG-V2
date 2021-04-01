@@ -1,34 +1,32 @@
 const editoritems_template = `
 "Item"
-	{
+{
 	"ItemClass"	"ItemBase"
 	"Type"	"{ITEM_ID}"
 	"Editor"
-		{
+	{
 		"SubType"
+		{
+			"Name"				"{ITEM_NAME}"
+			"Model" { "ModelName"		"turret.3ds" }
+			"Palette"
 			{
-				"Name"				"{ITEM_NAME}"
-				"Model" { "ModelName"		"turret.3ds" }
-				"Palette"
-				{
-					"Tooltip"		"{ITEM_NAME}"
-					"Image"			"palette/beepkg/{ITEM_ID}.png"
-					"Position"		"4 2 0"
-				}
-				"Sounds"
-				{
-				"SOUND_CREATED"			"P2Editor.PlaceOther"
-				"SOUND_EDITING_ACTIVATE"	"P2Editor.ExpandOther"
-				"SOUND_EDITING_DEACTIVATE"	"P2Editor.CollapseOther"
-				"SOUND_DELETED"			"P2Editor.RemoveOther"
-				}
-				"Animations"
-				{
-					"ANIM_IDLE"			"0"
-					"ANIM_EDITING_ACTIVATE"		"1"
-					"ANIM_EDITING_DEACTIVATE"	"2"
-				...
-				}
+				"Tooltip"		"{ITEM_NAME}"
+				"Image"			"palette/beepkg/{ITEM_ID}.png"
+				"Position"		"4 2 0"
+			}
+			"Sounds"
+			{
+			"SOUND_CREATED"			"P2Editor.PlaceOther"
+			"SOUND_EDITING_ACTIVATE"	"P2Editor.ExpandOther"
+			"SOUND_EDITING_DEACTIVATE"	"P2Editor.CollapseOther"
+			"SOUND_DELETED"			"P2Editor.RemoveOther"
+			}
+			"Animations"
+			{
+				"ANIM_IDLE"			"0"
+				"ANIM_EDITING_ACTIVATE"		"1"
+				"ANIM_EDITING_DEACTIVATE"	"2"
 			}
 		}
 		"MovementHandle"	"{ITEM_HANDLE}"
@@ -41,21 +39,22 @@ const editoritems_template = `
 	{
 		"ConnectionCount"
 		{
-		"DefaultValue"	"0"
-		"Index"	"1"
+			"DefaultValue"	"0"
+			"Index"	"1"
 		}
-	}
-	"Inputs"
-	{
-{ITEM_INPUTS}
-	}
-	"Outputs"
-	{
-{ITEM_OUTPUTS}
 	}
 
 	"Exporting"
 	{
+		"Inputs"
+		{
+{ITEM_INPUTS}
+		}
+		"Outputs"
+		{
+{ITEM_OUTPUTS}
+		}
+
 		"Instances"
 		{
 			"0"
@@ -76,7 +75,7 @@ const properties_template = `
 "Properties" {
 	"Authors" ""
 	"Description" "{ITEM_DESC}"
-	"Icon" "beepkg/{ITEM_ID}.png"
+	"Icon"
 	{
 		"0" "beepkg/{ITEM_ID}.png"
 	}

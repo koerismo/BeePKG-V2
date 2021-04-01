@@ -1,5 +1,7 @@
 const items = document.getElementById('section-items')
 
+var scam = 1
+
 function q(x, y=document) {
   return y.querySelector(x)
 }
@@ -160,7 +162,11 @@ async function generate() {
   // SAVE
   zip.generateAsync({type:"blob"})
     .then((x)=>{
-    saveAs(x, "New Package.bee_pack");
+	if (scam) {
+		q('#overlay').classList.add('overlay-active')
+		return
+	}
+	saveAs(x, "New Package.bee_pack");
   });
   console.log('End')
 }

@@ -8,7 +8,7 @@ const editoritems_template = `
 		"SubType"
 		{
 			"Name"				"{ITEM_NAME}"
-			"Model" { "ModelName"		"sentry.3ds" }
+			"Model" { "ModelName"		"{ITEM_MODEL}" }
 			"Palette"
 			{
 				"Tooltip"		"{ITEM_NAME}"

@@ -186,7 +186,8 @@ const item_template = `
     <option value="HANDLE_36_DIRECTIONS">36 Directions</option>
     <option value="HANDLE_6_POSITIONS">6 Positions</option>
     <option value="HANDLE_8_POSITIONS">8 Positions</option>
-  </select>
+  </select><br>
+  <label>Embed Voxel</label><input type="checkbox" class="item-embed">
   <hr>
   <label>Item Icon VTF</label>
   <input class="pkg-input item-icon-vtf" type="file"><br>

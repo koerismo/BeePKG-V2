@@ -143,7 +143,7 @@ async function generate() {
       .replace('{ITEM_INPUTS}',doInputs(x))
       .replace('{ITEM_OUTPUTS}',doOutputs(x))
       .replace('{ITEM_HANDLE}',itemprops.handle)
-      .replace('{ITEM_EMBED}',itemprops.embed?editoritems_embedded_voxel_template:'') // template if true, nothing if not
+      .replace('{ITEM_EMBED}',itemprops.embed?editoritems_embedded_voxel_template:editoritems_plain_voxel_template) // template if true, nothing if not
     
     
     

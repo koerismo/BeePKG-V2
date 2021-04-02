@@ -16,6 +16,12 @@ function updateItemHeader(x) {
   q('header',x.parentElement).innerText = 'Toggle Collapse — '+x.value
 }
 
+function handlePlacement(x) {
+  return (q('.item-floor',x).checked?'FLOOR ':'')+
+	 (q('.item-walls',x).checked?'WALL':'')+
+	 (q('.item-ceil',x).checked?' CEILING':'')
+}
+
 async function readText(x) {
   return await new Promise((pass,fail)=>{
     let freader = new FileReader()
@@ -129,6 +135,7 @@ async function generate() {
       'handle': q('.item-handle',x).value,
       'model': q('.item-model',x).value,
       'embed':	q('.item-embed',x).checked,
+      'placement': handlePlacement(q('.item-placement',x)),
 	    
       'inst': q('.item-inst',x),
       'icon_png': q('.item-icon-png',x),
@@ -151,6 +158,7 @@ async function generate() {
       .replace('{ITEM_OUTPUTS}',doOutputs(x))
       .replace('{ITEM_HANDLE}',itemprops.handle)
       .replace('{ITEM_MODEL}',itemprops.model)
+      .replace('{ITEM_PLACEMENT}',itemprops.placement)
       .replace('{ITEM_EMBED}',itemprops.embed?editoritems_embedded_voxel_template:editoritems_plain_voxel_template) // template if true, nothing if not
     
     

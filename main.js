@@ -1,7 +1,5 @@
 const items = document.getElementById('section-items')
 
-var scam = 1
-
 function q(x, y=document) {
   return y.querySelector(x)
 }
@@ -99,7 +97,7 @@ function doOutputs(x) {
 }
 
 function nameToId(x) {
-  return x.toLowerCase().split('').filter((x)=>{return 'abcdefghijklmnopqrstuvwxyz '.includes(x)}).join('').toUpperCase().replaceAll(' ','_')
+  return 'ITEM_'+x.toLowerCase().split('').filter((x)=>{return 'abcdefghijklmnopqrstuvwxyz '.includes(x)}).join('').toUpperCase().replaceAll(' ','_')
 }
 
 async function generate() {
@@ -169,10 +167,6 @@ async function generate() {
   // SAVE
   zip.generateAsync({type:"blob"})
     .then((x)=>{
-	if (scam) {
-		q('#overlay').classList.add('overlay-active')
-		return
-	}
 	saveAs(x, "New Package.bee_pack");
   });
   console.log('End')

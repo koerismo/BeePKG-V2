@@ -134,6 +134,7 @@ async function generate() {
       .replaceAll('{ITEM_NAME}',itemprops.name)
       .replaceAll('{ITEM_ID}',itemprops.id)
       .replaceAll('{ITEM_DESC}',itemprops.desc)
+      .replaceAll('{PKG_AUTHOR}',pkgprops.author)
     // GEN EDITORITEMS.TXT
     let editoritems = editoritems_template
       .replaceAll('{ITEM_NAME}',itemprops.name)
@@ -142,7 +143,6 @@ async function generate() {
       .replace('{ITEM_INPUTS}',doInputs(x))
       .replace('{ITEM_OUTPUTS}',doOutputs(x))
       .replace('{ITEM_HANDLE}',itemprops.handle)
-      .replace('{PKG_AUTHOR}',pkgprops.author)
       .replace('{ITEM_EMBEDDED_VOXEL}',itemprops.embed?editoritems_embedded_voxel_template:'') // template if true, nothing if not
     
     

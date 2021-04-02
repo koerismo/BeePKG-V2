@@ -161,7 +161,8 @@ const editoritems_embedded_voxel_template = `
 		}
 `
 
-const editoritems_plain_voxel_template = `
+const editoritems_plain_voxel_template = '' //Adding OccupiedVoxels makes the item take up the entire surface no matter what placement handle is used.
+/*`
 		"OccupiedVoxels"
 		{
 			"Voxel"
@@ -169,7 +170,7 @@ const editoritems_plain_voxel_template = `
 				"Pos"		"0 0 0"
 			}
 		}
-`
+`*/
 
 const properties_template = `
 "Properties" {

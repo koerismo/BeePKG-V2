@@ -12,6 +12,10 @@ function collapse(x) {
   x.parentElement.classList.toggle('active')
 }
 
+function updateItemHeader(x) {
+  q('header',x.parentElement).innerText = 'Toggle Collapse —— '+x.value
+}
+
 async function readText(x) {
   return await new Promise((pass,fail)=>{
     let freader = new FileReader()

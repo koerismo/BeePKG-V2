@@ -66,10 +66,7 @@ const editoritems_template = `
 			}
 		}
 
-		"EmbeddedVoxels"
-		{
-{ITEM_EMBEDDED_VOXEL}
-		}
+{ITEM_EMBED}
 
 		"ConnectionPoints"
 		{
@@ -143,10 +140,23 @@ const editoritems_template = `
 }
 `
 
-const editoritems_embedded_voxel_template = `"Voxel"
+const editoritems_embedded_voxel_template = `
+		"EmbeddedVoxels"
+		{
+			"Voxel"
 			{
 				"Pos"		"0 0 0"
 			}
+		}
+		"EmbedFace"
+		{
+			"Solid"
+			{
+				"Center"        "64 64 128"
+				"Dimensions"    "128 128 4"
+				"Grid"          "Grid_Default"
+			}
+		}
 `
 
 const properties_template = `

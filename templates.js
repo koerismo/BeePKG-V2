@@ -65,6 +65,12 @@ const editoritems_template = `
 				"BrushSideCount"	"24"
 			}
 		}
+
+		"EmbeddedVoxels"
+		{
+{ITEM_EMBEDDED_VOXEL}
+		}
+
 		"ConnectionPoints"
 		{
 			// left
@@ -137,9 +143,15 @@ const editoritems_template = `
 }
 `
 
+const editoritems_embedded_voxel_template = `"Voxel"
+			{
+				"Pos"		"0 0 0"
+			}
+`
+
 const properties_template = `
 "Properties" {
-	"Authors" ""
+	"Authors" "{PKG_AUTHOR}"
 	"Description" "{ITEM_DESC}"
 	"Icon"
 	{

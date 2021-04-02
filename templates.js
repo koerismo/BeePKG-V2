@@ -141,6 +141,17 @@ const editoritems_template = `
 `
 
 const editoritems_embedded_voxel_template = `
+		"OccupiedVoxels"
+		{
+			"Voxel"
+			{
+				"Pos"		"0 0 0"
+				"Surface"
+				{
+					"Normal"	"0 0 1"
+				}
+			}
+		}
 		"EmbeddedVoxels"
 		{
 			"Voxel"
@@ -148,13 +159,14 @@ const editoritems_embedded_voxel_template = `
 				"Pos"		"0 0 0"
 			}
 		}
-		"EmbedFace"
+`
+
+const editoritems_plain_voxel_template = `
+		"OccupiedVoxels"
 		{
-			"Solid"
+			"Voxel"
 			{
-				"Center"        "64 64 128"
-				"Dimensions"    "128 128 4"
-				"Grid"          "Grid_Default"
+				"Pos"		"0 0 0"
 			}
 		}
 `

@@ -197,7 +197,7 @@ const info_item_template = `
 }
 `
 
-const item_template = 
+const item_template = `
   <header onclick="collapse(this)">Toggle Collapse</header>
 
   <hr>

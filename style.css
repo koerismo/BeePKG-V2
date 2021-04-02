@@ -51,6 +51,7 @@ label {
   margin: 5px;
   color: #999;
   font-size: 13px;
+  line-height: 2.5;
 }
 
 #section-items > section.active {
@@ -121,3 +122,30 @@ button:hover {
   padding: 2px 5px;
 }
 
+
+
+/* Custom checkboxes */
+
+input[type="checkbox"] {
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	margin-bottom: -3px;
+	background: #222;
+	border: 1px solid #666;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+	background: #4babff;
+	border: 1px solid #0000;
+}
+
+input[type="checkbox"]:checked::after {
+	content: '\2713';
+	font-size: 11px;
+	margin-left: 3px;
+	font-weight: bold;
+	color: #222;
+}

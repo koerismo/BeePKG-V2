@@ -121,6 +121,7 @@ async function generate() {
       'desc': q('.item-desc',x).value,
       'id': nameToId(q('.item-name',x).value),
       'handle': q('.item-handle',x).value,
+      'embed':	q('.item-embed',x).checked,
       'inst': q('.item-inst',x),
       'icon_png': q('.item-icon-png',x),
       'icon_vtf': q('.item-icon-vtf',x)
@@ -140,6 +141,10 @@ async function generate() {
       .replace('{ITEM_INPUTS}',doInputs(x))
       .replace('{ITEM_OUTPUTS}',doOutputs(x))
       .replace('{ITEM_HANDLE}',itemprops.handle)
+      .replace('{ITEM_EMBEDDED_VOXEL}',itemprops.embed?editoritems_embedded_voxel_template:'') // template if true, nothing if not
+    
+    
+    
     await zip.file(`items/${itemprops.id}/properties.txt`,propsfile)
     await zip.file(`items/${itemprops.id}/editoritems.txt`,editoritems)
     

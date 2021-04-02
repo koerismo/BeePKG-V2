@@ -17,9 +17,9 @@ function updateItemHeader(x) {
 }
 
 function handlePlacement(x) {
-  return (q('.item-floor',x).checked?'FLOOR ':'')+
-	 (q('.item-walls',x).checked?'WALL':'')+
-	 (q('.item-ceil',x).checked?' CEILING':'')
+  return (q('.item-floor',x).checked?'':'FLOOR ')+
+	 (q('.item-walls',x).checked?'':'WALL')+
+	 (q('.item-ceil',x).checked?'':' CEILING')
 }
 
 async function readText(x) {

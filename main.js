@@ -121,10 +121,12 @@ async function generate() {
       'name': q('.item-name',x).value,
       'desc': q('.item-desc',x).value,
       'id': nameToId(q('.item-name',x).value),
+	    
       'handle': q('.item-handle',x).value,
+      'model': q('.item-model',x).value,
       'embed':	q('.item-embed',x).checked,
+	    
       'inst': q('.item-inst',x),
-      'model': q('.item-model',x),
       'icon_png': q('.item-icon-png',x),
       'icon_vtf': q('.item-icon-vtf',x)
     }

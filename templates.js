@@ -30,7 +30,7 @@ const editoritems_template = `
 			}
 		}
 		"MovementHandle"	"{ITEM_HANDLE}"
-		"InvalidSurface" 	"" //"WALL FLOOR CEILING"
+		"InvalidSurface" 	"{ITEM_PLACEMENT}"
 		"DesiredFacing"		"DESIRES_ANYTHING"
 		"CanAnchorOnGoo"	"0"
 		"CanAnchorOnBarriers"	"0"

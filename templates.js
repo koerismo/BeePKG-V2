@@ -202,7 +202,7 @@ const item_template = `
 
   <hr>
 
-  <input oninput="updateItemHeader(this.value)" class="pkg-input item-name" placeholder="Item Name"><br>
+  <input oninput="updateItemHeader(this)" class="pkg-input item-name" placeholder="Item Name"><br>
   <input class="pkg-input item-desc" placeholder="Item Description"><br>
 
   <hr>

@@ -105,7 +105,8 @@ async function generate() {
   let pkgprops = {
     'name': q('#pkg-name').value,
     'desc': q('#pkg-desc').value,
-    'id': nameToId(q('#pkg-name').value)
+    'id': nameToId(q('#pkg-name').value),
+    'author': q('#pkg-author').value
   }
   // INFO.TXT BASICS
   let info = `
@@ -141,6 +142,7 @@ async function generate() {
       .replace('{ITEM_INPUTS}',doInputs(x))
       .replace('{ITEM_OUTPUTS}',doOutputs(x))
       .replace('{ITEM_HANDLE}',itemprops.handle)
+      .replace('{PKG_AUTHOR}',pkgprops.author)
       .replace('{ITEM_EMBEDDED_VOXEL}',itemprops.embed?editoritems_embedded_voxel_template:'') // template if true, nothing if not
     
     

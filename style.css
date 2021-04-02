@@ -142,6 +142,7 @@ input[type="checkbox"] {
 	border: 1px solid #666;
 	border-radius: 4px;
 	cursor: pointer;
+	padding: 0;
 }
 
 input:checked {
@@ -152,7 +153,7 @@ input:checked {
 
 /* This doesn't work and I have no idea why. I'll re-enable it if I manage to fix it. */
 
-/*
+
 input:checked::after {
 	content: '\2713';
 	font-size: 11px;
@@ -160,4 +161,4 @@ input:checked::after {
 	font-weight: bold;
 	color: #222;
 }
-*/
+

@@ -198,9 +198,14 @@ const info_item_template = `
 
 const item_template = `
   <header onclick="collapse(this)">Toggle Collapse</header>
+
   <hr>
+
   <input class="pkg-input item-name" placeholder="Item Name"><br>
   <input class="pkg-input item-desc" placeholder="Item Description"><br>
+
+  <hr>
+
   <label>Item Handle</label>
   <select class="pkg-input item-handle">
     <option value="HANDLE_NONE">No Handle</option>
@@ -209,8 +214,31 @@ const item_template = `
     <option value="HANDLE_6_POSITIONS">6 Positions</option>
     <option value="HANDLE_8_POSITIONS">8 Positions</option>
   </select><br>
+  <label>Editor Model</label>
+  <select class="pkg-input item-model">
+    <optgroup>
+      <option value="sentry.3ds">Turret</option>
+      <option value="light_strip.3ds">Light Strip</option>
+    </optgroup>
+    <optgroup>
+      <option value="cube.3ds">Cube (Normal)</option>
+      <option value="cubecompanion.3ds">Cube (Companion)</option>
+      <option value="cubelaser.3ds">Cube (Redirection)</option>
+      <option value="cubesphere.3ds">Cube (Edgeless)</option>
+    </optgroup>
+    <optgroup>
+      <option value="buttonweight.3ds">Floor Button (Weighted)</option>
+      <option value="buttoncube.3ds">Floor Button (Cube)</option>
+      <option value="buttonball.3ds">Floor Button (Sphere)</option>
+    </optgroup>
+    <optgroup>
+      <option value="sentry.3ds">Custom (UNFINISHED)</option>
+    </optgroup>
+  </select><br>
   <label>Embed Voxel</label><input type="checkbox" class="item-embed">
+
   <hr>
+
   <label>Item Icon VTF</label>
   <input class="pkg-input item-icon-vtf" type="file"><br>
   <label>Item Icon PNG</label>

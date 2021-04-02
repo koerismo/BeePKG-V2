@@ -217,22 +217,22 @@ const item_template = `
   </select><br>
   <label>Editor Model</label>
   <select class="pkg-input item-model">
-    <optgroup>
+    <optgroup label="——— Generic ———">
       <option value="sentry.3ds">Turret</option>
       <option value="light_strip.3ds">Light Strip</option>
     </optgroup>
-    <optgroup>
+    <optgroup label="——— Cubes ———">
       <option value="cube.3ds">Cube (Normal)</option>
       <option value="cubecompanion.3ds">Cube (Companion)</option>
       <option value="cubelaser.3ds">Cube (Redirection)</option>
       <option value="cubesphere.3ds">Cube (Edgeless)</option>
     </optgroup>
-    <optgroup>
+    <optgroup label="——— Buttons ———">
       <option value="buttonweight.3ds">Floor Button (Weighted)</option>
       <option value="buttoncube.3ds">Floor Button (Cube)</option>
       <option value="buttonball.3ds">Floor Button (Sphere)</option>
     </optgroup>
-    <optgroup>
+    <optgroup label="——— Custom ———">
       <option value="sentry.3ds">Custom (UNFINISHED)</option>
     </optgroup>
   </select><br>
@@ -252,5 +252,5 @@ const item_template = `
   <button onclick="addOutput(this)">Add Output</button>
   <section class="item-outputs"></section>
   <hr>
-  <button onclick="this.parentElement.parentElement.removeChild(this.parentElement)">Delete Item</button>
+  <button class="item-delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement)">Delete Item</button>
 `

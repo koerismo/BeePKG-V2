@@ -197,7 +197,7 @@ const info_item_template = `
 }
 `
 
-const item_template = `
+const item_template = 
   <header onclick="collapse(this)">Toggle Collapse</header>
 
   <hr>
@@ -236,8 +236,13 @@ const item_template = `
       <option value="sentry.3ds">Custom (UNFINISHED)</option>
     </optgroup>
   </select><br>
-  <label>Embed Voxel</label><input type="checkbox" class="item-embed">
-
+  <label>Embed Voxel</label><input type="checkbox" class="item-embed"><br>
+  <label>Allow Placement On</label>
+  <section class="item-placement">
+    <label>Floor</label><input checked class="item-floor" type="checkbox">
+    <label>Walls</label><input checked class="item-walls" type="checkbox">
+    <label>Ceiling</label><input checked class="item-ceil" type="checkbox">
+  </section>
   <hr>
 
   <label>Item Icon VTF</label>
@@ -246,11 +251,15 @@ const item_template = `
   <input class="pkg-input item-icon-png" type="file"><br>
   <label>Item Instance</label>
   <input class="pkg-input item-inst" type="file">
+
   <hr>
+
   <button onclick="addInput(this)">Add Input</button>
   <section class="item-inputs"></section>
   <button onclick="addOutput(this)">Add Output</button>
   <section class="item-outputs"></section>
+
   <hr>
+
   <button class="item-delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement)">Delete Item</button>
 `

@@ -13,7 +13,7 @@ function collapse(x) {
 }
 
 function updateItemHeader(x) {
-  q('header',x.parentElement).innerText = 'Toggle Collapse —— '+x.value
+  q('header',x.parentElement).innerText = 'Toggle Collapse — '+x.value
 }
 
 async function readText(x) {

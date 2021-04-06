@@ -107,7 +107,7 @@ function doOutputs(x) {
 }
 
 function nameToId(x) {
-  return 'ITEM_'+x.toLowerCase().split('').filter((x)=>{return 'abcdefghijklmnopqrstuvwxyz '.includes(x)}).join('').toUpperCase().replaceAll(' ','_')
+  return 'ITEM_'+x.toLowerCase().split('').filter((x)=>{return 'abcdefghijklmnopqrstuvwxyz 0123456789_'.includes(x)}).join('').toUpperCase().replaceAll(' ','_')
 }
 
 async function generate() {

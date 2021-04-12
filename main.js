@@ -149,8 +149,7 @@ async function generate() {
       'placement': handlePlacement(q('.item-placement',x)),
 	    
       'inst': q('.item-inst',x),
-      'icon_png': q('.item-icon-png',x),
-      'icon_vtf': q('.item-icon-vtf',x)
+      'icon_png': q('.item-icon-png',x)
     }
     // APPEND TO INFO.TXT
     info += info_item_template.replaceAll('{ITEM_ID}',itemprops.id)

@@ -245,9 +245,7 @@ const item_template = `
   </section>
   <hr>
 
-  <label>Item Icon VTF</label>
-  <input class="pkg-input item-icon-vtf" type="file"><br>
-  <label>Item Icon PNG</label>
+  <label>Item Icon (png)</label>
   <input class="pkg-input item-icon-png" type="file"><br>
   <label>Item Instance</label>
   <input class="pkg-input item-inst" type="file">

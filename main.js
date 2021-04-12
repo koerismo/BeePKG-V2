@@ -38,6 +38,17 @@ async function readImage(x) {
   })
 }
 
+async function pngToVtf(x) {
+	return await new Promise((pass,fail)=>{
+    let freader = new FileReader()
+    freader.onload = function(e){
+			let out = await createVTF(freader.result)
+			pass(out)
+		}
+    freader.readAsDataURL(x)
+  })
+}
+
 function addItem() {
   let tmp = document.createElement('SECTION')
   tmp.classList.add('item')
@@ -167,7 +178,7 @@ async function generate() {
     await zip.file(`items/${itemprops.id}/editoritems.txt`,editoritems)
     
     // VTF
-    let vtf_read = await readImage(itemprops.icon_vtf.files[0])
+    let vtf_read = await pngToVtf(itemprops.icon_png.files[0])
     await zip.file(`resources/materials/models/props_map_editor/palette/beepkg/${itemprops.id}.vtf`,vtf_read)
     
     // PNG

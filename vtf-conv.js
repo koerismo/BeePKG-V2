@@ -22,7 +22,7 @@ Number.prototype.toShort = function() {
 }
 
 
-function writeVTFHeader() {
+function writeVTFHeader(isize) {
 
   var flags = 0x0004 /* Clamp S */ +
               0x0008 /* Clamp T */ +
@@ -34,8 +34,8 @@ function writeVTFHeader() {
     ...(  'VTF\0'.toBytes(4)  ),  /* Beginning thing. */
     7,0,0,0,  1,0,0,0,            /* Reallllly stretched out version number, I guess. */
     64,0,0,0,                     /* Header size. Taking it from sprays.tk again lmao */
-    ...( (128).toShort() ),       /* Width */
-    ...( (128).toShort() ),       /* Height */
+    ...( (isize).toShort() ),       /* Width */
+    ...( (isize).toShort() ),       /* Height */
     ...( flags.toBytes(4) ),      /* Flags */
     1,                            /* # Of frames*/
     0                             /* First frame */
@@ -54,7 +54,7 @@ function writeVTFHeader() {
 }
 
 
-function dataFromImageURL(isrc) {
+function dataFromImageURL(isrc,isize) {
   return new Promise( (resolve, reject) => { /* Since this is an async function, make a new promise to keep everything nice. */
 
     let canv = document.createElement('CANVAS')
@@ -63,10 +63,10 @@ function dataFromImageURL(isrc) {
 
     let img = new Image()
     img.onload = function() {
-      try {ctx.drawImage(img,0,0,128,128)}
+      try {ctx.drawImage(img,0,0,isize,isize)}
       catch(e) {reject(e)}
       //ctx.fillRect(0,0,128,128)
-      resolve(ctx.getImageData(0,0,128,128))
+      resolve(ctx.getImageData(0,0,isize,isize))
     }
     img.src = isrc
 
@@ -75,8 +75,8 @@ function dataFromImageURL(isrc) {
 
 
 async function createVTF(isrc) {
-  let VTFBody = await dataFromImageURL(isrc)
-  let VTFHeader = writeVTFHeader()
+  let VTFBody = await dataFromImageURL(isrc,128)
+  let VTFHeader = writeVTFHeader(128)
   let file = VTFHeader.concat(Array.from(VTFBody.data))
   return new Uint8Array(file)
 }

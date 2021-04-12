@@ -41,7 +41,7 @@ async function readImage(x) {
 async function pngToVtf(x) {
 	return await new Promise((pass,fail)=>{
     let freader = new FileReader()
-    freader.onload = function(e){
+    freader.onload = async function(e){
 			let out = await createVTF(freader.result)
 			pass(out)
 		}

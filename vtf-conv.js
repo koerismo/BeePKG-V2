@@ -63,9 +63,9 @@ function dataFromImageURL(isrc) {
 
     let img = new Image()
     img.onload = function() {
-      //try {ctx.drawImage(img,0,0,128,128)}
-      //catch(e) {reject(e)}
-      ctx.fillRect(0,0,128,128)
+      try {ctx.drawImage(img,0,0,128,128)}
+      catch(e) {reject(e)}
+      //ctx.fillRect(0,0,128,128)
       resolve(ctx.getImageData(0,0,128,128))
     }
     img.src = isrc
@@ -78,5 +78,5 @@ async function createVTF(isrc) {
   let VTFBody = await dataFromImageURL(isrc)
   let VTFHeader = writeVTFHeader()
   let file = VTFHeader.concat(Array.from(VTFBody.data))
-  return file
+  return new Uint8Array(file)
 }

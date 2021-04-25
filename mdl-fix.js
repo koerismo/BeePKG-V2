@@ -26,7 +26,7 @@ class mdl_model {
 	}
 	
 	getPath() {
-		return (new TextDecoder().decode( this.parsed.slice(12,12+64) ))
+		return (new TextDecoder().decode( this.parsed.slice(12,12+64) )).split('.mdl')[0]+'.mdl' // janky but it works
 	}
 	
 	export() {

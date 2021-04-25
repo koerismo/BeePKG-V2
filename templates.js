@@ -237,7 +237,7 @@ const item_template = `
     </optgroup>
   </select><br>
 
-  <label>Custom Model</label><input class="item-model-custom" type="file" hidden><br>
+  <label>Custom Model</label><input class="item-model-custom" type="file" multiple disabled><br>
   <label>Embed Voxel</label><input type="checkbox" class="item-embed"><br>
 
   <label>Allow Placement On</label>

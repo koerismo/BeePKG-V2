@@ -37,14 +37,14 @@ async function handleModelUpload(inputObj,itemName,outputObj) {
 		if (!fileNames.includes('mdl') ||
 		    !fileNames.includes('vtx') ||
 		    !fileNames.includes('vvd')) {
-			throw('Model files missing! MDL, VTX, VVD, DX90.VTX required.')
+			fail('Model files missing! MDL, VTX, VVD, DX90.VTX required.')
 		}
 		
 
 		let MdlFile = Array.from(inputObj.files).filter((x)=>{return x.name.endsWith('.mdl')})[0]
 		let NonMdlFiles = Array.from(inputObj.files).filter((x)=>{return !x.name.endsWith('.mdl')})
 		
-		if (MdlFile === undefined) {throw('No mdl file attached. This should never happen!')}
+		if (MdlFile === undefined) {fail('No mdl file attached. This should never happen!')}
 
 		let fReader = new FileReader()
 
@@ -197,6 +197,7 @@ async function generate() {
 			
 			'handle': q('.item-handle',x).value,
 			'model': q('.item-model',x).value,
+			'model_custom': q('.item-model-custom',x).files,
 			'embed':	q('.item-embed',x).checked,
 			'placement': handlePlacement(q('.item-placement',x)),
 			

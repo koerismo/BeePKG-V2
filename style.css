@@ -162,3 +162,8 @@ input:checked::after {
 	color: #222;
 }
 
+input:disabled {
+	background: #252525;
+	border-color: #333;
+	color: #555;
+}

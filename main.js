@@ -267,11 +267,11 @@ async function generate() {
 
 async function tryGenerate() {
 	try {
-		generate()
+		await generate()
 	}
 	catch(e)
 	{
 		console.warn(e)
-		alert(e)
+		alert('An error has occurred!\n'+e)
 	}
 }

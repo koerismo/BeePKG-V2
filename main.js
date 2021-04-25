@@ -48,7 +48,7 @@ async function handleModelUpload(inputObj,itemName,outputObj) {
 
 		let fReader = new FileReader()
 
-		fReader.onload = function() {
+		fReader.onload = async function() {
 			let MDL = new mdl_model(fReader.result)
 
 			let MdlName = MDL.getPath().split('/')
@@ -57,7 +57,7 @@ async function handleModelUpload(inputObj,itemName,outputObj) {
 			MDL.setPath(`props_map_editor/props_beepkg/${itemName}.mdl`)
 			
 			// Save files
-			for (let fInd = 0; fInd < NonMdlFiles.length) {
+			for (let fInd = 0; fInd < NonMdlFiles.length; fInd++) {
 				await outputObj.file(`props_map_editor/props_beepkg/${itemName}${fileExtension(NonMdlFiles[fInd].name)}`,readImage(NonMdlFiles[fInd]))
 				// readImage uses arrayBuffer, so it'll work.
 			}

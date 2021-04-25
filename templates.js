@@ -233,10 +233,13 @@ const item_template = `
       <option value="buttonball.3ds">Floor Button (Sphere)</option>
     </optgroup>
     <optgroup label="——— Custom ———">
-      <option value="sentry.3ds">Custom (UNFINISHED)</option>
+      <option value="custom">Custom (Beta)</option>
     </optgroup>
   </select><br>
+
+  <label>Custom Model</label><input class="item-model-custom" type="file" hidden><br>
   <label>Embed Voxel</label><input type="checkbox" class="item-embed"><br>
+
   <label>Allow Placement On</label>
   <section class="item-placement">
     <label>Floor</label><input checked class="item-floor" type="checkbox">

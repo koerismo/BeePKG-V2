@@ -52,16 +52,19 @@ async function handleModelUpload(inputObj,itemName,outputObj) {
 			let MDL = new mdl_model(fReader.result)
 
 			let MdlName = MDL.getPath().split('/')
-			MdlName = MdlName[MDLName.length-1]
+			MdlName = MdlName[MdlName.length-1]
 			
 			MDL.setPath(`props_map_editor/props_beepkg/${itemName}.mdl`)
 			
 			// Save files
 			for (let fInd = 0; fInd < NonMdlFiles.length; fInd++) {
-				await outputObj.file(`props_map_editor/props_beepkg/${itemName}${fileExtension(NonMdlFiles[fInd].name)}`,readImage(NonMdlFiles[fInd]))
+				if (NonMdlFiles[fInd].name.endsWith('.3ds'))
+					await outputObj.file(`resources/models/puzzlemaker/selection_props_beepkg/${itemName}.3ds`,readImage(NonMdlFiles[fInd])) 
+				else
+					await outputObj.file(`resources/models/props_map_editor/props_beepkg/${itemName}${fileExtension(NonMdlFiles[fInd].name)}`,readImage(NonMdlFiles[fInd]))
 				// readImage uses arrayBuffer, so it'll work.
 			}
-			await outputObj.file(`props_map_editor/props_beepkg/${itemName}.mdl`,MDL.export())
+			await outputObj.file(`resources/models/props_map_editor/props_beepkg/${itemName}.mdl`,MDL.export())
 			
 			// End
 			pass()
@@ -200,6 +203,11 @@ async function generate() {
 			'inst': q('.item-inst',x),
 			'icon_png': q('.item-icon-png',x)
 		}
+		
+		if (itemprops.model === 'custom') {
+			itemprops.model = `props_beepkg/${itemprops.name}.3ds`
+		}
+		
 		// APPEND TO INFO.TXT
 		info += info_item_template.replaceAll('{ITEM_ID}',itemprops.id)
 		// GEN PROPERTIES.TXT
@@ -253,5 +261,16 @@ async function generate() {
 		.then((x)=>{
 	saveAs(x, "New_Package.bee_pack");
 	});
-	console.log('End')
+	console.log('Package compilation finished.')
+}
+
+async function tryGenerate() {
+	try {
+		generate()
+	}
+	catch(e)
+	{
+		console.warn(e)
+		alert(e)
+	}
 }

@@ -216,7 +216,7 @@ const item_template = `
     <option value="HANDLE_8_POSITIONS">8 Positions</option>
   </select><br>
   <label>Editor Model</label>
-  <select class="pkg-input item-model">
+  <select oninput="updateCustomMdlVis" class="pkg-input item-model">
     <optgroup label="——— Generic ———">
       <option value="sentry.3ds">Turret</option>
       <option value="light_strip.3ds">Light Strip</option>
@@ -235,9 +235,7 @@ const item_template = `
     <optgroup label="——— Custom ———">
       <option value="custom">Custom (Beta)</option>
     </optgroup>
-  </select><br>
-
-  <label>Custom Model</label><input class="item-model-custom" type="file" multiple disabled><br>
+  </select><input class="item-model-custom" type="file" multiple disabled><br>
   <label>Embed Voxel</label><input type="checkbox" class="item-embed"><br>
 
   <label>Allow Placement On</label>

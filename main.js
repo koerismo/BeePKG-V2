@@ -17,7 +17,7 @@ function updateItemHeader(x) {
 }
 
 function updateCustomMdlVis() {
-	q('.item-model-custom',this.parent).disabled = (this.value != 'custom')
+	q('.item-model-custom',this.parentElement).disabled = (this.value != 'custom')
 }
 
 function handlePlacement(x) {

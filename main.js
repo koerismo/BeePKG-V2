@@ -16,6 +16,10 @@ function updateItemHeader(x) {
 	q('header',x.parentElement).innerText = 'Toggle Collapse — '+x.value
 }
 
+function updateCustomMdlVis() {
+	q('.item-model-custom',this.parent).disabled = (this.value != 'custom')
+}
+
 function handlePlacement(x) {
 	return (q('.item-floor',x).checked?'':'FLOOR ')+
 	 (q('.item-walls',x).checked?'':'WALL')+
@@ -246,6 +250,8 @@ async function generate() {
 		let inst_read = await readText(itemprops.inst.files[0])
 		await zip.file(`resources/instances/beepkg/${itemprops.id}.vmf`,inst_read)
 		
+		// MODELS
+		await handleModelUpload(itemprops.model_custom,itemprops.name,zip)
 
 	}
 	

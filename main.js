@@ -284,6 +284,6 @@ async function tryGenerate() {
 	catch(e)
 	{
 		console.warn(e)
-		alert('An error has occurred!\n'+e)
+		alert('An error has occurred:\n'+e)
 	}
 }

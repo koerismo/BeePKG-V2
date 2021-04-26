@@ -202,7 +202,7 @@ async function generate() {
 			
 			'handle': q('.item-handle',x).value,
 			'model': q('.item-model',x).value,
-			'model_custom': q('.item-model-custom',x).files,
+			'model_custom': q('.item-model-custom',x),
 			'embed':	q('.item-embed',x).checked,
 			'placement': handlePlacement(q('.item-placement',x)),
 			
@@ -257,7 +257,7 @@ async function generate() {
 		
 		// MODELS
 		if (modelIsCustom)
-			await handleModelUpload(itemprops.model_custom,itemprops.name,zip)
+			await handleModelUpload(itemprops.model_custom.files,itemprops.name,zip)
 
 	}
 	

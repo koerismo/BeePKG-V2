@@ -16,8 +16,8 @@ function updateItemHeader(x) {
 	q('header',x.parentElement).innerText = 'Toggle Collapse — '+x.value
 }
 
-function updateCustomMdlVis() {
-	q('.item-model-custom',this.parentElement).disabled = (this.value != 'custom')
+function updateCustomMdlVis(x) {
+	q('.item-model-custom',x.parentElement).disabled = (x.value != 'custom')
 }
 
 function handlePlacement(x) {

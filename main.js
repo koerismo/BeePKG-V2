@@ -194,6 +194,7 @@ async function generate() {
 `
 	// GEN ITEMS
 	async function doItem(x){
+		var modelIsCustom = 0
 		let itemprops = {
 			'name': q('.item-name',x).value,
 			'desc': q('.item-desc',x).value,
@@ -208,10 +209,14 @@ async function generate() {
 			'inst': q('.item-inst',x),
 			'icon_png': q('.item-icon-png',x)
 		}
+		if (itemprops.model === 'custom') {modelIsCustom = 1; itemprops.model = `props_beepkg/${itemprops.name}.3ds`}
 		
-		if (itemprops.model === 'custom') {
-			itemprops.model = `props_beepkg/${itemprops.name}.3ds`
-		}
+		// CHECK VALIDITY
+		if (itemprops.name === '') {throw('Item missing name!')}
+		if (itemprops.desc === '') {throw('Item missing description!')}
+		if (itemprops.icon_png.files.length === 0) {throw(`Item ${itemprops.id} missing icon!`)}
+		if (itemprops.inst.files.length === 0) {throw(`Item ${itemprops.id} missing instance!`)}
+		if (modelIsCustom && itemprops.model_custom.files.length === 0) {throw(`Item ${itemprops.id} has no custom model files attached!`)}
 		
 		// APPEND TO INFO.TXT
 		info += info_item_template.replaceAll('{ITEM_ID}',itemprops.id)
@@ -251,7 +256,8 @@ async function generate() {
 		await zip.file(`resources/instances/beepkg/${itemprops.id}.vmf`,inst_read)
 		
 		// MODELS
-		await handleModelUpload(itemprops.model_custom,itemprops.name,zip)
+		if (modelIsCustom)
+			await handleModelUpload(itemprops.model_custom,itemprops.name,zip)
 
 	}
 	

@@ -283,7 +283,7 @@ async function tryGenerate() {
 	}
 	catch(e)
 	{
-		console.warn(e)
+		console.warn('ERROR LOG:\n\n'+e)
 		alert('An error has occurred:\n'+e)
 	}
 }

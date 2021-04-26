@@ -257,7 +257,7 @@ async function generate() {
 		
 		// MODELS
 		if (modelIsCustom)
-			await handleModelUpload(itemprops.model_custom.files,itemprops.name,zip)
+			await handleModelUpload(itemprops.model_custom,itemprops.name,zip)
 
 	}
 	

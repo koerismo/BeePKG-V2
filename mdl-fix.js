@@ -8,7 +8,7 @@ String.prototype.toBytes = function() {
 
 class mdl_model {
 	constructor(raw) {
-		if (raw.length < 128) {throw('MDL file too short!')}
+		if (raw.length < 76) {throw('MDL file too short!')}
 		// I have to manipulate data within these coordinates. If it's too short, what the fuck am I even doing???
 		this.parsed = new Uint8Array(raw)
 	}

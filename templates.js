@@ -216,7 +216,7 @@ const item_template = `
     <option value="HANDLE_8_POSITIONS">8 Positions</option>
   </select><br>
   <label>Editor Model</label>
-  <select oninput="updateCustomMdlVis" class="pkg-input item-model">
+  <select oninput="updateCustomMdlVis()" class="pkg-input item-model">
     <optgroup label="——— Generic ———">
       <option value="sentry.3ds">Turret</option>
       <option value="light_strip.3ds">Light Strip</option>

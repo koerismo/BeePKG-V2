@@ -8,16 +8,16 @@ const els = {
 	items: q('#section-items')
 }
 
-function collapse() {
-	this.parentElement.classList.toggle('active')
+function collapse(x) {
+	x.parentElement.classList.toggle('active')
 }
 
-function updateItemHeader() {
-	q('header',this.parentElement).innerText = 'Toggle Collapse — '+this.value
+function updateItemHeader(x) {
+	q('header',x.parentElement).innerText = 'Toggle Collapse — '+x.value
 }
 
-function updateCustomMdlVis() {
-	q('.item-model-custom',this.parentElement).disabled = (this.value != 'custom')
+function updateCustomMdlVis(x) {
+	q('.item-model-custom',x.parentElement).disabled = (x.value != 'custom')
 }
 
 function handlePlacement(x) {

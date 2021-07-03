@@ -190,7 +190,7 @@ async function generate() {
 // Created with BEE2PKG V2
 "ID" "${pkgprops.id}"
 "Name" "${pkgprops.name}"
-"Description" "${pkgprops.desc}"
+"Desc" "${pkgprops.desc}"
 `
 	// GEN ITEMS
 	async function doItem(x){

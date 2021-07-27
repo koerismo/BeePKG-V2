@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>BEEPKG-V3</title>
+		
+		<meta property="og:title" content="BeePKG-V2">
+		<meta property="og:description" content="An online tool for generating BEE2.4 item packages">
+		<meta name="theme-color" content="#4565c6">
+		
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="style-overlay.css">
+		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+
+		<style>
+			/* Temporary CSS until I reimplement collapsing. */
+			#section-items > section { height: auto; }
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<h3>BeePKG</h3>
+			<div id="pkg-container"></div>
+			<section>
+				<button id="btn-download" onclick="tryGenerate()">Download</button>
+			</section>
+		</div>
+		<script src="jszip/FileSaver.js"></script>
+		<script src="jszip/jszip.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/koerismo/vtf.js@latest/vtf-v2.js"></script>
+		<script src="mdl-fix.js"></script>
+		<script src="assets/componentBase.class.js"></script>
+		<script src="assets/BeeItem.class.js"></script>
+		<script src="assets/BeePackage.class.js"></script>
+		<script src="assets/index.js"></script>
+	</body>
+</html>

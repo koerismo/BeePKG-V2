@@ -30,6 +30,8 @@ class BeeItem extends ComponentBase {
 			'place-floor':	(x) => { this.json.placement = (this.json.placement & 0b011) + x.checked * 0b100 },
 			'place-wall':	(x) => { this.json.placement = (this.json.placement & 0b101) + x.checked * 0b010 },
 			'place-ceil':	(x) => { this.json.placement = (this.json.placement & 0b110) + x.checked * 0b001 },
+			'item-icon':	(x) => { this.json.files.icon = x.files[0] },
+			'item-inst-0':	(x) => { this.json.files.instances[0] = x.files[0] }
 		}
 
 		this._templateReplacements = {
@@ -49,6 +51,7 @@ class BeeItem extends ComponentBase {
 			<input data-return="desc" placeholder="Item Description"><br>
 			<input data-return="auth" placeholder="Item Author">
 			<hr>
+			<label>Rotation Handle</label>
 			<select data-return="handle">
 				<option value="HANDLE_NONE">No Handle</option>
 				<option value="HANDLE_4_DIRECTIONS">4 Directions</option>
@@ -56,6 +59,7 @@ class BeeItem extends ComponentBase {
 				<option value="HANDLE_6_POSITIONS">6 Positions</option>
 				<option value="HANDLE_8_POSITIONS">8 Positions</option>
 			</select><br>
+			<label>Editor Model</label>
 			<select data-return="model-type">
 				<optgroup label="——— Generic ———">
 					<option value="sentry.3ds">Turret</option>
@@ -77,14 +81,18 @@ class BeeItem extends ComponentBase {
 				</optgroup>
 			</select>
 			<br>
-			<input data-return="model-custom" type="file" multiple disabled><br>
+			<label>Embed Voxel</label>		<input type="checkbox" class="item-embed"><br>
 			<label>Allow Placement On</label>
 			<section class="item-placement">
-				<label>Floor</label><input data-return="place-floor" type="checkbox">
-				<label>Walls</label><input data-return="place-wall" type="checkbox">
-				<label>Ceiling</label><input data-return="place-ceil" type="checkbox">
+				<label>Floor</label>		<input data-return="place-floor" type="checkbox">
+				<label>Walls</label>		<input data-return="place-wall" type="checkbox">
+				<label>Ceiling</label>		<input data-return="place-ceil" type="checkbox">
 			</section>
 			<hr>
+			<label>Item Icon (png)</label>
+			<input data-return="item-icon" type="file"><br>
+			<label>Item Instance</label>
+			<input data-return="item-inst-0" type="file">
 		`
 	}
 
@@ -350,6 +358,7 @@ ${
 	}
 }`);
 			// END
+			console.log('Processed item '+this.idl+'!')
 			resolve(true);
 		})
 	}

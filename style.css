@@ -129,6 +129,12 @@ button:hover {
   padding: 2px 5px;
 }
 
+button:disabled {
+	background: #242424;
+	border-color: #6a6a6a;
+	color: #6a6a6a;
+}
+
 
 
 /* Custom checkboxes */

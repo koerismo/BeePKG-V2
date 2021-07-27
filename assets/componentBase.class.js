@@ -37,6 +37,7 @@ class ComponentBase {
 	}
 
 	async readToDataURL(file) {
+		console.log(file)
 		return new Promise((resolve,reject) => {
 			const reader = new FileReader();
 			reader.onload = () => { resolve(reader.result); }
@@ -80,8 +81,10 @@ class ComponentBase {
 		Object.keys(this._templateProperties).forEach(key => {
 			const inp = el.querySelector(`*[data-return="${key}"]`)
 
-			if (inp.type == 'checkbox') {		inp.checked = this._templateReplacements[key];		}
-			else {								inp.value = this._templateReplacements[key];		}
+			if (this._templateReplacements[key] != undefined) {
+				if (inp.type == 'checkbox') {		inp.checked = this._templateReplacements[key];		}
+				else {								inp.value = this._templateReplacements[key];		}
+			}
 
 			inp.oninput = () => { this._templateProperties[key](inp) }
 		})

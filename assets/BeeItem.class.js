@@ -14,7 +14,7 @@ class BeeItem extends ComponentBase {
 			},
 			inputs: [],
 			outputs: [],
-			picker: 'None',
+			class: 'ItemBase',
 			mdlpreset: 'sentry.3ds',
 			handle: 'HANDLE_4_DIRECTIONS',
 			embed: false,
@@ -31,7 +31,8 @@ class BeeItem extends ComponentBase {
 			'place-wall':	(x) => { this.json.placement = (this.json.placement & 0b101) + x.checked * 0b010 },
 			'place-ceil':	(x) => { this.json.placement = (this.json.placement & 0b110) + x.checked * 0b001 },
 			'item-icon':	(x) => { this.json.files.icon = x.files[0] },
-			'item-inst-0':	(x) => { this.json.files.instances[0] = x.files[0] }
+			'item-inst-0':	(x) => { this.json.files.instances[0] = x.files[0] },
+			//'item-class':	(x) => { this.json.class = x.value }
 		}
 
 		this._templateReplacements = {
@@ -42,7 +43,14 @@ class BeeItem extends ComponentBase {
 			'model-type': this.json.mdlpreset,
 			'place-floor': (this.json.placement & 0b100) >> 2,
 			'place-wall': (this.json.placement & 0b010) >> 1,
-			'place-ceil': this.json.placement & 0b001
+			'place-ceil': this.json.placement & 0b001,
+			//'item-class': this.json.class
+		}
+
+		this._templateClickActions = {
+			'item-delete':		() => { pkg.json.items = pkg.json.items.filter(x => { return x !== this; }); this._html.remove(); },
+			'add-input':		() => { this.addInput() },
+			'add-output':		() => { this.addOutput() }
 		}
 
 		this._template = `
@@ -71,13 +79,13 @@ class BeeItem extends ComponentBase {
 					<option value="cubelaser.3ds">Cube (Redirection)</option>
 					<option value="cubesphere.3ds">Cube (Edgeless)</option>
 				</optgroup>
-					<optgroup label="——— Buttons ———">
+				<optgroup label="——— Buttons ———">
 					<option value="buttonweight.3ds">Floor Button (Weighted)</option>
 					<option value="buttoncube.3ds">Floor Button (Cube)</option>
 					<option value="buttonball.3ds">Floor Button (Sphere)</option>
 				</optgroup>
-					<optgroup label="——— Custom ———">
-					<option value="custom">Custom (Beta)</option>
+				<optgroup label="——— Custom ———">
+					<option disabled="true" value="custom">Custom (Disabled)</option>
 				</optgroup>
 			</select>
 			<br>
@@ -91,9 +99,74 @@ class BeeItem extends ComponentBase {
 			<hr>
 			<label>Item Icon (png)</label>
 			<input data-return="item-icon" type="file"><br>
-			<label>Item Instance</label>
-			<input data-return="item-inst-0" type="file">
+			<hr>
+			<!--<label>Item Class</label>
+			<select data-return="item-class">
+				<option value="ItemBase">Base</option>
+				<option value="ItemButtonFloor">Floor Button</option>
+			</select><br>-->
+			<label>Item Instance 1</label><input data-return="item-inst-0" type="file"><br>
+			<!--<label>Item Instance 2</label><input data-return="item-inst-1" type="file"><br>
+			<label>Item Instance 3</label><input data-return="item-inst-2" type="file"><br>
+			<label>Item Instance 4</label><input data-return="item-inst-3" type="file"><br>
+			<label>Item Instance 5</label><input data-return="item-inst-4" type="file"><br>
+			<label>Item Instance 6</label><input data-return="item-inst-5" type="file"><br>-->
+			<hr>
+			<button data-click="add-input">Add Input</button>
+			<section data-section="item-inputs"></section>
+			<hr>
+			<button data-click="add-output">Add Output</button>
+			<section data-section="item-outputs"></section>
+			<hr>
+			<button data-click="item-delete">Delete Item</button>
 		`
+	}
+
+	/* The addInput/addOutput methods and their respective generated HTML are quite janky. A more modular solution for the future would be more ideal. */
+	addInput() {
+		const iel = document.createElement('SECTION');
+		iel.innerHTML = `
+			<label>Enable Command</label>	<input data-return="input-enable"	placeholder="mylight,TurnOn,,0,-1"><br>
+			<label>Disable Command</label>	<input data-return="input-disable"	placeholder="mylight,TurnOff,,0,-1">
+			<hr>
+			<button data-click="input-delete">Delete Input</button>
+		`
+		const enableCmd  = iel.querySelector('input[data-return="input-enable"]')
+		const disableCmd = iel.querySelector('input[data-return="input-disable"]')
+		const delButton  = iel.querySelector('button[data-click="input-delete"]')
+
+		var inputDict = { enable: '', disable: '' }
+
+		enableCmd.oninput  = () => { inputDict.enable  = enableCmd.value;  }
+		disableCmd.oninput = () => { inputDict.disable = disableCmd.value; }
+		delButton.onclick  = () => { this.json.inputs = this.json.inputs.filter(x => { return x != inputDict; }); delButton.parentElement.remove() }
+
+		this.json.inputs.push(inputDict);
+
+		this._html.querySelector('[data-section="item-inputs"]').appendChild(iel);
+	}
+
+	addOutput() {
+		const iel = document.createElement('SECTION');
+		iel.innerHTML = `
+			<label>Activate Event</label>	<input data-return="output-activate"	placeholder="instance:relay_enable;onTrigger"><br>
+			<label>Deactivate Event</label>	<input data-return="output-deactivate"	placeholder="instance:relay_disable;onTrigger">
+			<hr>
+			<button data-click="output-delete">Delete Output</button>
+		`
+		const activateCmd  = iel.querySelector('input[data-return="output-activate"]')
+		const deactivateCmd = iel.querySelector('input[data-return="output-deactivate"]')
+		const delButton  = iel.querySelector('button[data-click="output-delete"]')
+
+		var outputDict = { activate: '', deactivate: '' }
+
+		activateCmd.oninput   = () => { outputDict.activate   = activateCmd.value;   }
+		deactivateCmd.oninput = () => { outputDict.deactivate = deactivateCmd.value; }
+		delButton.onclick     = () => { this.json.outputs = this.json.outputs.filter(x => { return x != outputDict; }); delButton.parentElement.remove() }
+
+		this.json.outputs.push(outputDict);
+
+		this._html.querySelector('[data-section="item-outputs"]').appendChild(iel);
 	}
 
 	export(appendToInfo, createFile) {
@@ -110,7 +183,7 @@ class BeeItem extends ComponentBase {
 			// vmf instances
 			for (var inst = 0; inst < this.json.files.instances.length; inst++) {
 				if ( this.json.files.instances[inst] == null ) { continue; }
-				await createFile(`resources/instances/beepkg/${this.idl}/${inst}.vmf`,
+				await createFile(`resources/instances/beepkg/${this.idl}/${this.idl}_${inst}.vmf`,
 					await this.readToText(this.json.files.instances[inst]));
 			}
 
@@ -119,7 +192,7 @@ class BeeItem extends ComponentBase {
 // Generated by ComponentBase.Item.export
 "Item"
 {
-	"ItemClass"	"ItemBase"
+	"ItemClass"	"${this.json.class}"
 	"Type"	"${this.id}"
 	"Editor"
 	{
@@ -173,7 +246,7 @@ this.json.inputs.map(inp => {
 			{
 				"Type"	"AND"
 				"Enable_cmd" "${inp.enable}"
-				"Disable_cmd" "${ino.disable}"
+				"Disable_cmd" "${inp.disable}"
 			}
 `
 })
@@ -358,7 +431,6 @@ ${
 	}
 }`);
 			// END
-			console.log('Processed item '+this.idl+'!')
 			resolve(true);
 		})
 	}

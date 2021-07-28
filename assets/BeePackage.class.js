@@ -20,7 +20,7 @@ class BeePackage extends ComponentBase {
 				<input data-return="desc" placeholder="Package Description"><br>
 			</section>
 			<section>
-				<button onclick="addItem()">Add Item</button>
+				<button data-click="add-item">Add Item</button>
 				<section id="section-items">
 				</section>
 			</section>
@@ -31,6 +31,10 @@ class BeePackage extends ComponentBase {
 		this._templateProperties = {
 			'name':			(x) => { this.json.name = x.value; },
 			'desc':			(x) => { this.json.desc = x.value; },
+		};
+
+		this._templateClickActions = {
+			'add-item':		() => { addItem(); }
 		};
 
 		this._templateReplacements = {

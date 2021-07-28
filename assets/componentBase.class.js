@@ -8,11 +8,17 @@ class ComponentBase {
 		/* The class used when creating the HTML element. */
 		this._htmlTag = 'SECTION';
 
+		/* This variable is set to mirror the value of .html() */
+		this._html = null;
+
 		/* This should be a dictionary of element search terms and element oninput callbacks. */
 		this._templateProperties = {};
 
+		/* This acts like the above, but with onclick events. */
+		this._templateClickActions = {};
+
 		/* 
-			Elements from the above must have a corrosponding key/value in the replacements var.
+			Elements from the above may have a corrosponding key/value in the replacements var.
 			The value is what the element's value is set to on creation.
 		*/
 		this._templateReplacements = {};
@@ -37,7 +43,6 @@ class ComponentBase {
 	}
 
 	async readToDataURL(file) {
-		console.log(file)
 		return new Promise((resolve,reject) => {
 			const reader = new FileReader();
 			reader.onload = () => { resolve(reader.result); }
@@ -88,6 +93,13 @@ class ComponentBase {
 
 			inp.oninput = () => { this._templateProperties[key](inp) }
 		})
+
+		Object.keys(this._templateClickActions).forEach(key => {
+			const inp = el.querySelector(`*[data-click="${key}"]`)
+			inp.onclick = () => { this._templateClickActions[key](inp) }
+		})
+
+		this._html = el;
 		return el
 	}
 

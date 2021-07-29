@@ -8,7 +8,7 @@ class ComponentBase {
 		/* The class used when creating the HTML element. */
 		this._htmlTag = 'SECTION';
 
-		/* This variable is set to mirror the value of .html() */
+		/* This variable is set to mirror the value of .html() when run. */
 		this._html = null;
 
 		/* This should be a dictionary of element search terms and element oninput callbacks. */
@@ -83,6 +83,8 @@ class ComponentBase {
 	html() {
 		const el = document.createElement(this._htmlTag);
 		el.innerHTML = this._template;
+		
+		// Register oninput events and initial values
 		Object.keys(this._templateProperties).forEach(key => {
 			const inp = el.querySelector(`*[data-return="${key}"]`)
 
@@ -94,6 +96,7 @@ class ComponentBase {
 			inp.oninput = () => { this._templateProperties[key](inp) }
 		})
 
+		// Register click events
 		Object.keys(this._templateClickActions).forEach(key => {
 			const inp = el.querySelector(`*[data-click="${key}"]`)
 			inp.onclick = () => { this._templateClickActions[key](inp) }
@@ -104,6 +107,6 @@ class ComponentBase {
 	}
 
 	export(appendToInfo, createFile) {
-		appendToInfo(`\n\n// This text will be appended to the info.txt file!`)
+		appendToInfo(`\n// componentBase.export.sample`)
 	}
 }

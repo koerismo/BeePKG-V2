@@ -4,7 +4,7 @@ class BeeItem extends ComponentBase {
 
 		this.json = {
 			name: 'My Item',
-			desc: 'This is my item.',
+			desc: 'This is an item.',
 			auth: 'Baguettery',
 			placement: 0b111,
 			files:{
@@ -14,7 +14,7 @@ class BeeItem extends ComponentBase {
 			},
 			inputs: [],
 			outputs: [],
-			class: 'ItemBase',
+			picker: 'single',
 			mdlpreset: 'sentry.3ds',
 			handle: 'HANDLE_4_DIRECTIONS',
 			embed: false,
@@ -32,7 +32,7 @@ class BeeItem extends ComponentBase {
 			'place-ceil':	(x) => { this.json.placement = (this.json.placement & 0b110) + x.checked * 0b001 },
 			'item-icon':	(x) => { this.json.files.icon = x.files[0] },
 			'item-inst-0':	(x) => { this.json.files.instances[0] = x.files[0] },
-			//'item-class':	(x) => { this.json.class = x.value }
+			'item-picker':	(x) => { this.handleInstanceSetup(x.value,this) }
 		}
 
 		this._templateReplacements = {
@@ -44,7 +44,7 @@ class BeeItem extends ComponentBase {
 			'place-floor': (this.json.placement & 0b100) >> 2,
 			'place-wall': (this.json.placement & 0b010) >> 1,
 			'place-ceil': this.json.placement & 0b001,
-			//'item-class': this.json.class
+			'item-picker': this.json.picker
 		}
 
 		this._templateClickActions = {
@@ -100,17 +100,19 @@ class BeeItem extends ComponentBase {
 			<label>Item Icon (png)</label>
 			<input data-return="item-icon" type="file"><br>
 			<hr>
-			<!--<label>Item Class</label>
-			<select data-return="item-class">
-				<option value="ItemBase">Base</option>
-				<option value="ItemButtonFloor">Floor Button</option>
-			</select><br>-->
-			<label>Item Instance 1</label><input data-return="item-inst-0" type="file"><br>
-			<!--<label>Item Instance 2</label><input data-return="item-inst-1" type="file"><br>
-			<label>Item Instance 3</label><input data-return="item-inst-2" type="file"><br>
-			<label>Item Instance 4</label><input data-return="item-inst-3" type="file"><br>
-			<label>Item Instance 5</label><input data-return="item-inst-4" type="file"><br>
-			<label>Item Instance 6</label><input data-return="item-inst-5" type="file"><br>-->
+			<label>Item Picker Type</label>
+			<select data-return="item-picker">
+				<option value="single">(1) Single Instance</option>
+				<option value="singleWB">(2) White/Black Instance</option>
+				<option value="buttontype">(3) Button Type Instances</option>
+				<option value="buttontypeWB">(6) White/Black Button Type Instance</option>
+			</select><br>
+			<div data-inst-index=0><label>Item Instance 1</label><input data-return="item-inst-0" type="file"></div>
+			<div data-inst-index=1><label>Item Instance 2</label><input data-return="item-inst-1" type="file"></div>
+			<div data-inst-index=2><label>Item Instance 3</label><input data-return="item-inst-2" type="file"></div>
+			<div data-inst-index=3><label>Item Instance 4</label><input data-return="item-inst-3" type="file"></div>
+			<div data-inst-index=4><label>Item Instance 5</label><input data-return="item-inst-4" type="file"></div>
+			<div data-inst-index=5><label>Item Instance 6</label><input data-return="item-inst-5" type="file"></div>
 			<hr>
 			<button data-click="add-input">Add Input</button>
 			<section data-section="item-inputs"></section>
@@ -120,6 +122,55 @@ class BeeItem extends ComponentBase {
 			<hr>
 			<button data-click="item-delete">Delete Item</button>
 		`
+	}
+
+	handleInstanceSetup(val,self) {
+		self.json.picker = val;
+		function setState(ind, isHidden, labelText) {
+			const e = q(`*[data-inst-index="${ind}"]`,self._html)
+			e.children[0].innerText = labelText;
+			e.hidden = isHidden;
+		}
+		switch(val) {
+			case 'single':
+				setState(0,false,'Item Instance');
+				setState(1,true,'(Unused)');
+				setState(2,true,'(Unused)');
+				setState(3,true,'(Unused)');
+				setState(4,true,'(Unused)');
+				setState(5,true,'(Unused)');
+				break;
+			case 'singleWB':
+				setState(0,false,'Item Instance (White)');
+				setState(1,false,'Item Instance (Black)');
+				setState(2,true,'(Unused)');
+				setState(3,true,'(Unused)');
+				setState(4,true,'(Unused)');
+				setState(5,true,'(Unused)');
+				break;
+			case 'buttontype':
+					setState(0,false,'Item Instance (Weighted)');
+					setState(1,true,'(Unused)');
+					setState(2,false,'Item Instance (Cube)');
+					setState(3,true,'(Unused)');
+					setState(4,false,'Item Instance (Sphere)');
+					setState(5,true,'(Unused)');
+					break;
+			case 'buttontypeWB':
+				setState(0,false,'Item Instance (Weighted) (White)');
+				setState(1,false,'Item Instance (Weighted) (Black)');
+				setState(2,false,'Item Instance (Cube) (White)');
+				setState(3,false,'Item Instance (Cube) (Black)');
+				setState(4,false,'Item Instance (Sphere) (White)');
+				setState(5,false,'Item Instance (Sphere) (Black)');
+				break;
+		}
+	}
+
+	html() {
+		const el = super.html();
+		this.handleInstanceSetup( this.json.picker, this );
+		return el;
 	}
 
 	/* The addInput/addOutput methods and their respective generated HTML are quite janky. A more modular solution for the future would be more ideal. */
@@ -188,14 +239,14 @@ class BeeItem extends ComponentBase {
 			}
 
 			// editoritems.txt
-			await createFile(`items/${this.idl}/editoritems.txt`,`
-// Generated by ComponentBase.Item.export
+			await createFile(`items/${this.idl}/editoritems.txt`,`// Generated by ComponentBase.Item.export
 "Item"
 {
-	"ItemClass"	"${this.json.class}"
+	"ItemClass"	"${this.json.picker.endsWith('WB') ? 'ItemButtonFloor' : 'ItemBase'}"
 	"Type"	"${this.id}"
 	"Editor"
 	{
+		${ this.json.picker.startsWith('buttontype') ? '"SubTypeProperty"	"ButtonType"' : ''} 
 		"SubType"
 		{
 			"Name"				"${this.json.name}"
@@ -406,8 +457,7 @@ ${
 }
 `);
 			// properties.txt
-			await createFile(`items/${this.idl}/properties.txt`,`
-// Generated by ComponentBase.Item.export
+			await createFile(`items/${this.idl}/properties.txt`,`// Generated by ComponentBase.Item.export
 "Properties" {
 	"Authors" "${this.json.auth}"
 	"Description" "${this.json.desc}"
@@ -418,7 +468,7 @@ ${
 }
 `);
 			// info.txt
-			appendToInfo(`
+			appendToInfo(`// Generated by ComponentBase.Item.export
 "Item"
 {
 	"ID"  "${this.id}"

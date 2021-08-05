@@ -1,4 +1,6 @@
-class ComponentBase {
+import { VTF } from "./vtflib/vtf.js";
+
+export class ComponentBase {
 	constructor() {
 		this.json = { name: 'My Component' };
 

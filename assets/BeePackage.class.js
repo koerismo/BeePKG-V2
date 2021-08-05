@@ -1,4 +1,7 @@
-class BeePackage extends ComponentBase {
+import { ComponentBase } from "./componentBase.class.js";
+import { BeeItem } from "./BeeItem.class.js";
+
+export class BeePackage extends ComponentBase {
 	constructor(json={}) {
 		super();
 
@@ -34,13 +37,19 @@ class BeePackage extends ComponentBase {
 		};
 
 		this._templateClickActions = {
-			'add-item':		() => { addItem(); }
+			'add-item':		() => { this.createItemComponent(); }
 		};
 
 		this._templateReplacements = {
 			'name': this.json.name,
 			'desc': this.json.desc
 		};
+	}
+
+	createItemComponent() {
+		let el = new BeeItem();
+		this.json.items.push( el );
+		this._html.querySelector('#section-items').appendChild( el.html() );
 	}
 
 	html() {

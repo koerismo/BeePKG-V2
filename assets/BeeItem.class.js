@@ -1,4 +1,6 @@
-class BeeItem extends ComponentBase {
+import { ComponentBase } from "./componentBase.class.js";
+
+export class BeeItem extends ComponentBase {
 	constructor(json={}) {
 		super();
 
@@ -127,7 +129,7 @@ class BeeItem extends ComponentBase {
 	handleInstanceSetup(val,self) {
 		self.json.picker = val;
 		function setState(ind, isHidden, labelText) {
-			const e = q(`*[data-inst-index="${ind}"]`,self._html)
+			const e = self._html.querySelector(`*[data-inst-index="${ind}"]`)
 			e.children[0].innerText = labelText;
 			e.hidden = isHidden;
 		}

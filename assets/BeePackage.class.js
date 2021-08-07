@@ -44,6 +44,11 @@ export class BeePackage extends ComponentBase {
 			'name': this.json.name,
 			'desc': this.json.desc
 		};
+
+		if (Object.keys(json).length > 0) {
+			console.warn('Loading saves hasn\'t been implemented yet. This should never be triggered. WTF?');
+			alert('Your package was restored from your last session. Currently, uploaded files cannot be saved/restored.');
+		}
 	}
 
 	createItemComponent() {
@@ -69,6 +74,10 @@ export class BeePackage extends ComponentBase {
 			...this.json,
 			items: this.json.items.map(x => { return x.serialize(); })
 		}
+	}
+
+	compress() {
+		return LZString.compressToUTF16(JSON.stringify(this.serialize()))
 	}
 
 	async export() {

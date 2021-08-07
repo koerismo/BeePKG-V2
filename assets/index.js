@@ -23,8 +23,9 @@ btnDownload.onclick = () => {
 	btnDownload.disabled = true;
 	btnDownload.innerText = 'Processing...';
 	pkg.export().then((x)=>{
-		saveAs(x, "New_Package.bee_pack");
+		saveAs(x, `ucp_${pkg.idl}.bee_pack`);
 		btnDownload.disabled = false;
 		btnDownload.innerText = 'Download';
 	})
 }
+

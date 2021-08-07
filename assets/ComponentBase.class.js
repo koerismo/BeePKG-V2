@@ -75,7 +75,7 @@ export class ComponentBase {
 
 	get id() {
 		// Converts names like "My Item" to "MY_ITEM"
-		return this.json.name.replaceAll('\x20','_').toUpperCase().match(/[A-Z0-9\_]/g).join('')
+		return this.json.name.trim().replaceAll('\x20','_').toUpperCase().match(/[A-Z0-9\_]/g).join('')
 	}
 
 	// Same as above, but lowercase.

@@ -1,4 +1,4 @@
-import { ComponentBase } from "./componentBase.class.js";
+import { ComponentBase } from "./ComponentBase.class.js";
 
 export class BeeItem extends ComponentBase {
 	constructor(json={}) {

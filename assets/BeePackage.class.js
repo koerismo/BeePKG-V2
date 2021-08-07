@@ -1,4 +1,4 @@
-import { ComponentBase } from "./componentBase.class.js";
+import { ComponentBase } from "./ComponentBase.class.js";
 import { BeeItem } from "./BeeItem.class.js";
 
 export class BeePackage extends ComponentBase {

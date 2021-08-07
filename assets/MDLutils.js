@@ -6,7 +6,7 @@ String.prototype.toBytes = function() {
   return this.split('').map((x)=>{return x.charCodeAt()})
 }
 
-class mdl_model {
+export class MDL {
 	constructor(raw) {
 		if (raw.length < 76) {throw('MDL file too short!')}
 		// I have to manipulate data within these coordinates. If it's too short, what the fuck am I even doing???

@@ -1,4 +1,3 @@
-import { BeeItem } from "./BeeItem.class.js";
 import { BeePackage } from "./BeePackage.class.js";
 
 /*

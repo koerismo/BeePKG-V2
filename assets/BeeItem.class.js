@@ -318,6 +318,7 @@ this.json.outputs.map(outp => {
 			}
 `
 })
+}
 		}
 
 		"Instances"

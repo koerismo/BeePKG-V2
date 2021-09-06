@@ -34,7 +34,8 @@ export class BeeItem extends ComponentBase {
 			'place-ceil':	(x) => { this.json.placement = (this.json.placement & 0b110) + x.checked * 0b001 },
 			'item-icon':	(x) => { this.json.files.icon = x.files[0] },
 			'item-inst-0':	(x) => { this.json.files.instances[0] = x.files[0] },
-			'item-picker':	(x) => { this.handleInstanceSetup(x.value,this) }
+			'item-picker':	(x) => { this.handleInstanceSetup(x.value,this) },
+			'item-embed':	(x) => { this.json.embed = x.checked }
 		}
 
 		this._templateReplacements = {
@@ -46,7 +47,8 @@ export class BeeItem extends ComponentBase {
 			'place-floor': (this.json.placement & 0b100) >> 2,
 			'place-wall': (this.json.placement & 0b010) >> 1,
 			'place-ceil': this.json.placement & 0b001,
-			'item-picker': this.json.picker
+			'item-picker': this.json.picker,
+			'item-embed': this.json.embed
 		}
 
 		this._templateClickActions = {
@@ -91,7 +93,7 @@ export class BeeItem extends ComponentBase {
 				</optgroup>
 			</select>
 			<br>
-			<label>Embed Voxel</label>		<input type="checkbox" class="item-embed"><br>
+			<label>Embed Voxel</label>		<input data-return="item-embed" type="checkbox"><br>
 			<label>Allow Placement On</label>
 			<section class="item-placement">
 				<label>Floor</label>		<input data-return="place-floor" type="checkbox">

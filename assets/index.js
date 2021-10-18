@@ -17,15 +17,25 @@ q('#pkg-container').appendChild(pkg.html());
 const btnDownload = q('#btn-download')
 
 btnDownload.onclick = () => {
-	if (pkg.json.items.filter(x => {return x.json.files.icon.width > 1000 || x.json.files.icon.height > 1000}).length) {
-		if (!confirm('Warning!\nAn uploaded image is abnormally large. This may cause extended processing times and possibly crash the window. To continue, press OK.')) { return; }
-	}
 	btnDownload.disabled = true;
 	btnDownload.innerText = 'Processing...';
+
 	pkg.export().then((x)=>{
-		saveAs(x, `ucp_${pkg.idl}.bee_pack`);
+
+		btnDownload.innerText = 'Saving...';
+		saveAs( x, `ucp_${pkg.idl}.bee_pack` );
+
 		btnDownload.disabled = false;
 		btnDownload.innerText = 'Download';
+
+	}).catch((err)=>{
+		
+		btnDownload.disabled = false;
+		btnDownload.innerText = 'Download';
+
+		console.warn( 'An error occurred:\n\n' + err );
+		alert( 'An error occurred:\n\n' + err );
+
 	})
 }
 

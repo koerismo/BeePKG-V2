@@ -91,11 +91,11 @@ export class BeePackage extends ComponentBase {
 		async function createFile(name, content) { await zip.file(name, content); }
 
 		for (var item = 0; item < this.json.items.length; item++) {
+			console.log(`[${this.id}] Processing item ${this.json.items[item].id} ...`)
 			await this.json.items[item].export(addToInfo, createFile);
 		}
 
-		createFile('info.txt',info);
-
-		return zip.generateAsync({type:"blob"})
+		await createFile('info.txt',info);
+		accept( await zip.generateAsync({type:"blob"}) )
 	}
 }

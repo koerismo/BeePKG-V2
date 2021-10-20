@@ -195,7 +195,7 @@ input:disabled {
 	position: fixed;
 	top: 15px;
 	right: 15px;
-	color: #fff1;
+	color: #fff3;
 	font-size: 13px;
 	transition: color 0.5s linear;
 	cursor: not-allowed;
@@ -203,6 +203,6 @@ input:disabled {
 }
 
 #button-save.needs-save {
-	color: #ffffff6e;
+	color: #fff6;
 	cursor: pointer;
 }

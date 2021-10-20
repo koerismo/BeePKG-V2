@@ -63,7 +63,9 @@ function restoreSave() {
 var needsSave = true;
 
 btnSave.onclick = function() {
+	if (!needsSave) { return }
 	this.classList.remove('needs-save');
+	btnSave.innerText = 'Changes Saved';
 	localStorage.setItem( 'beepkg-autosave', pkg.compress() );
 	needsSave = false;
 }
@@ -72,11 +74,14 @@ function beginAutosaveLoop() {
 
 	q('#pkg-container').addEventListener('input',()=>{
 		btnSave.classList.add('needs-save');
+		btnSave.innerText = 'Save Now';
+		needsSave = true;
 	})
 
 	setInterval( ()=>{
 		if (!needsSave) { return }
 		btnSave.classList.remove('needs-save');
+		btnSave.innerText = 'Changes Saved';
 		localStorage.setItem( 'beepkg-autosave', pkg.compress() )
 		needsSave = false;
 	}, 1000*30 )

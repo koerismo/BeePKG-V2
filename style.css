@@ -190,3 +190,19 @@ input:disabled {
 	border-color: #333;
 	color: #555;
 }
+
+#button-save {
+	position: fixed;
+	top: 15px;
+	right: 15px;
+	color: #fff1;
+	font-size: 13px;
+	transition: color 0.5s linear;
+	cursor: not-allowed;
+	user-select: none;
+}
+
+#button-save.needs-save {
+	color: #ffffff6e;
+	cursor: pointer;
+}

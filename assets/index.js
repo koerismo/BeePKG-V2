@@ -8,6 +8,7 @@ function q(x,p=document) { return p.querySelector(x) }
 
 var pkg;
 const btnDownload = q('#btn-download');
+const btnSave = q('#button-save');
 
 function removeAllChildren(el) {
 	while (el.lastChild) { el.removeChild(el.lastChild) }
@@ -59,10 +60,26 @@ function restoreSave() {
 	return {}
 }
 
+var needsSave = true;
+
+btnSave.onclick = function() {
+	this.classList.remove('needs-save');
+	localStorage.setItem( 'beepkg-autosave', pkg.compress() );
+	needsSave = false;
+}
+
 function beginAutosaveLoop() {
+
+	q('#pkg-container').addEventListener('input',()=>{
+		btnSave.classList.add('needs-save');
+	})
+
 	setInterval( ()=>{
+		if (!needsSave) { return }
+		btnSave.classList.remove('needs-save');
 		localStorage.setItem( 'beepkg-autosave', pkg.compress() )
-	}, 1000*60 )
+		needsSave = false;
+	}, 1000*30 )
 }
 
 setupPackage(restoreSave())

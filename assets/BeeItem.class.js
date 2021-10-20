@@ -2,8 +2,10 @@ import { ComponentBase } from "./ComponentBase.class.js";
 import { _ } from "./Escape.util.js";
 
 export class BeeItem extends ComponentBase {
-	constructor(json={}) {
+	constructor( parent, json={} ) {
 		super();
+
+		this.parent = parent;
 
 		this.json = {
 			name: 'My Item',
@@ -58,7 +60,7 @@ export class BeeItem extends ComponentBase {
 		}
 
 		this._templateClickActions = {
-			'item-delete':		() => { pkg.json.items = pkg.json.items.filter(x => { return x !== this; }); this._html.remove(); },
+			'item-delete':		() => { this.parent.json.items = this.parent.json.items.filter(x => { return x !== this; }); this._html.remove(); },
 			'add-input':		() => { this.addInput() },
 			'add-output':		() => { this.addOutput() }
 		}
@@ -180,11 +182,28 @@ export class BeeItem extends ComponentBase {
 	html() {
 		const el = super.html();
 		this.handleInstanceSetup( this.json.picker, this );
+
+		const json = {...this.json};
+
+		if ( json.inputs && json.inputs.length ) {
+			this.json.inputs = [];
+			json.inputs.forEach(inp => {
+				this.addInput( inp.enable, inp.disable )
+			});
+		}
+
+		if ( json.outputs && json.outputs.length ) {
+			this.json.outputs = [];
+			json.outputs.forEach(opt => {
+				this.addOutput( opt.activate, opt.deactivate )
+			});
+		}
+
 		return el;
 	}
 
 	/* The addInput/addOutput methods and their respective generated HTML are quite janky. A more modular solution for the future would be more ideal. */
-	addInput() {
+	addInput(enableValue='', disableValue='') {
 		const iel = document.createElement('SECTION');
 		iel.innerHTML = `
 			<label>Enable Command</label>	<input data-return="input-enable"	placeholder="mylight,TurnOn,,0,-1"><br>
@@ -196,7 +215,10 @@ export class BeeItem extends ComponentBase {
 		const disableCmd = iel.querySelector('input[data-return="input-disable"]')
 		const delButton  = iel.querySelector('button[data-click="input-delete"]')
 
-		var inputDict = { enable: '', disable: '' }
+		var inputDict = { enable: enableValue, disable: disableValue }
+
+		enableCmd.value	 = enableValue;
+		disableCmd.value = disableValue;
 
 		enableCmd.oninput  = () => { inputDict.enable  = enableCmd.value;  }
 		disableCmd.oninput = () => { inputDict.disable = disableCmd.value; }
@@ -207,7 +229,7 @@ export class BeeItem extends ComponentBase {
 		this._html.querySelector('[data-section="item-inputs"]').appendChild(iel);
 	}
 
-	addOutput() {
+	addOutput(activateValue='', deactivateValue='') {
 		const iel = document.createElement('SECTION');
 		iel.innerHTML = `
 			<label>Activate Event</label>	<input data-return="output-activate"	placeholder="instance:relay_enable;onTrigger"><br>
@@ -219,7 +241,10 @@ export class BeeItem extends ComponentBase {
 		const deactivateCmd = iel.querySelector('input[data-return="output-deactivate"]')
 		const delButton  = iel.querySelector('button[data-click="output-delete"]')
 
-		var outputDict = { activate: '', deactivate: '' }
+		var outputDict = { activate: activateValue, deactivate: deactivateValue }
+
+		activateCmd.value	= activateValue;
+		deactivateCmd.value = deactivateValue;
 
 		activateCmd.oninput   = () => { outputDict.activate   = activateCmd.value;   }
 		deactivateCmd.oninput = () => { outputDict.deactivate = deactivateCmd.value; }

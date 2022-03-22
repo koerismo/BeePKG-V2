@@ -1,7 +1,7 @@
 :root {
-	--main-hl: rgb(255, 166, 31);
-	--light-hl: rgb(230, 122, 0);
-	--trans-hl: rgba(255, 166, 31, 0.2);
+	--main-hl: rgb(154, 98, 255);
+	--light-hl: rgb(186, 146, 255);
+	--trans-hl: rgba(186, 146, 255, 0.2);
 }
 
 html, body {

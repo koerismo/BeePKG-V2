@@ -1,4 +1,4 @@
-import { VTF } from "./vtflib/vtf.js";
+import { Vtf, VtfImageResource, Frame } from "./vtflib/VtfContainer.js";
 
 export class ComponentBase {
 	constructor() {
@@ -56,10 +56,11 @@ export class ComponentBase {
 	async convertToVTF(file,vtfArgs={}) {
 		return new Promise(async (resolve,reject) => {
 			const url = await this.readToDataURL(file);
-			const img = new Image()
+			const img = new Image();
 			img.onload = () => {
-				const vtf = new VTF([img],0,'RGBA8888',vtfArgs);
-				resolve( vtf.export() );
+				const res = new VtfImageResource([ new Frame(img) ]);
+				const vtf = new Vtf( [256, 256], [res], 'DXT1', 1 );
+				resolve( vtf.blob() );
 			}
 			img.onerror = (e) => { reject(e); }
 			img.src = url;

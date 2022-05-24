@@ -4,4 +4,4 @@
 **Attention: V2.5 has been rewritten from scratch, and may temporarily lack features from the previous version.**
 
 ---
-The webapp is currently live [here]((https://areng14.github.io/BeePKG-V24everIguess-/)).
+The webapp is currently live https://areng14.github.io/BeePKG-V24everIguess-/

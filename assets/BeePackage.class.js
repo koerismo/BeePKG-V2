@@ -6,8 +6,8 @@ export class BeePackage extends ComponentBase {
 		super();
 
 		this.json = {
-			name: 'My Package',
-			desc: 'This is a package.',
+			name: 'Package Name Here',
+			desc: 'Package Description Here',
 			icon: null,
 			items: [],
 			...json
@@ -46,7 +46,7 @@ export class BeePackage extends ComponentBase {
 		};
 
 		if (Object.keys(json).length > 0) {
-			alert( 'Your package was restored from your last session successfully. Currently, files will not be saved/restored.' );
+			alert( 'Your package was restored from your last session successfully. files will not be saved because im lazy lmao.' );
 		}
 	}
 

@@ -8,9 +8,9 @@ export class BeeItem extends ComponentBase {
 		this.parent = parent;
 
 		this.json = {
-			name: 'My Item',
-			desc: 'This is an item.',
-			auth: 'Baguettery',
+			name: 'Item name',
+			desc: 'Item description',
+			auth: 'Your name',
 			placement: 0b111,
 			files:{
 				icon: null,

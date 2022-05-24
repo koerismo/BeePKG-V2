@@ -30,7 +30,7 @@ function setupPackage(json={}) {
 		pkg.export().then((x)=>{
 
 			btnDownload.innerText = 'Saving...';
-			saveAs( x, `ucp_${pkg.idl}.bee_pack` );
+			saveAs( x, `ucp_${pkg.idl}.zip` );
 
 			btnDownload.disabled = false;
 			btnDownload.innerText = 'Download';

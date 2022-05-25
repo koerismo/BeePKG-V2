@@ -6,10 +6,18 @@ import { BeePackage } from "./BeePackage.class.js";
 
 function q(x,p=document) { return p.querySelector(x) }
 
+/* The below is the file in question. */
 var pkg;
+/* The below is the variable declaring whether or not it is a zip or a bee_pack */
+var zipType = "zip";
+/* The below is for downloading the file */
 const btnDownload = q('#btn-download');
+/* The below is for saving the project for future purposes */
 const btnSave = q('#button-save');
+/* The below is the button to toggle between zip and bee_pack */
+const btnZipTypeToggle = q('#button-zip-type-toggle');
 
+/* if ever find ye an explanation of the following, please inform me. -IMyself*/
 function removeAllChildren(el) {
 	while (el.lastChild) { el.removeChild(el.lastChild) }
 }
@@ -30,7 +38,14 @@ function setupPackage(json={}) {
 		pkg.export().then((x)=>{
 
 			btnDownload.innerText = 'Saving...';
-			saveAs( x, `ucp_${pkg.idl}.zip` );
+			if (zipType == "zip") {
+
+				saveAs(x, `ucp_${pkg.idl}.zip`);
+			}
+			else if (zipType == "bee")
+			{
+				saveAs(x, `ucp_${pkg.idl}.bee_pack`);
+			};
 
 			btnDownload.disabled = false;
 			btnDownload.innerText = 'Download';
@@ -68,6 +83,16 @@ btnSave.onclick = function() {
 	btnSave.innerText = 'Changes Saved';
 	localStorage.setItem( 'beepkg-autosave', pkg.compress() );
 	needsSave = false;
+}
+
+btnZipTypeToggle.onclick = function ()
+{
+	if (zipType == "zip") {
+		zipType = "bee";
+	}
+	else if (zipType == "bee") {
+		zipType = "zip";
+	};
 }
 
 function beginAutosaveLoop() {

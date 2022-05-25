@@ -293,7 +293,7 @@ export class BeeItem extends ComponentBase {
 		// Rudimentary icon checks
 		if (!this.json.files.icon)
 			throw(`Item ${this.id} missing an icon!`)
-		if (this.json.files.icon.size >= 100000)
+		if (this.json.files.icon.size >= 100000000)
 			throw(`Item ${this.id} has an unusually large icon!`)
 
 		// png item icon

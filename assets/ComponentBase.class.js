@@ -2,6 +2,8 @@ import { Vtf, VtfImageResource, Frame } from "./vtflib/VtfContainer.js";
 
 export class ComponentBase {
 	constructor() {
+
+		/* The name of the component. What component? who knows! */
 		this.json = { name: 'My Component' };
 
 		/* The innerHTML in string form. */
@@ -74,11 +76,13 @@ export class ComponentBase {
 		return serialized;
 	}
 
+	/* For bee_pack files (editoritems and stuff) */
 	get id() {
 		// Converts names like "My Item" to "MY_ITEM"
 		return this.json.name.trim().replaceAll('\x20','_').toUpperCase().match(/[A-Z0-9\_]/g).join('')
 	}
 
+	/* check BeePackage.class.js  it uses lowercase id for multiple things */
 	// Same as above, but lowercase.
 	get idl() {return this.id.toLowerCase(); }
 
